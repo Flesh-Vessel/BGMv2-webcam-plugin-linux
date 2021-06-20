@@ -1,14 +1,42 @@
 The goal of this repository is to supplement the [main Real-Time High Resolution Background Matting repo](https://github.com/PeterL1n/BackgroundMattingV2) with a working demo of a videoconferencing plugin (e.g. the code used in our promotional demos).
 
 # Prerequisites
+
+## For Windows
+
+1. Install required packages in `requirements.txt`
+2. pip install pyvirtualcal
+3. Install [UnityCapture](https://github.com/schellingb/UnityCapture).
+4. Change webcam's device_id depending to appropriate one.
+
+To investigate working device_id's, run test_cv2.py.
+
+
+***
+Description from the original repository below.
+
+# Guidelines
+For best results:
+1. Avoid blocking bright light, especially during background capture.
+2. Avoid changing light conditions. For prolonged use, it may be helpful to re-take the background as light conditions drift.
+
+# Community Contributions
+1. [@kevinlester](https://github.com/kevinlester/BGMv2-webcam-plugin-linux) added many realtime settings to the UI controls
+2. [@KostiaChorny](https://github.com/KostiaChorny/BGMv2-webcam-plugin-linux) added Windows OBS virtual camera support (not merged but please visit their fork)
+
+Thanks to [CK FreeVideoTemplates](https://www.youtube.com/watch?v=DHRUNWdf3ms) on YouTube for the seasonal video target background.
+
+
+## For Linux
+
 This plugin requires Linux, because it relies on the [v4l2loopback kernel module](https://github.com/umlaeute/v4l2loopback) to create and stream to virtual video devices. We welcome and encourage community adaptations to other platforms.
 
 1. Install v4l2loopback. On Debian/Ubuntu, the command is likely `sudo apt-get install v4l2loopback-utils`.
-2. Install required packages in `requirements.txt`
+
    - If starting from the main repository, just install [pyfakewebcam](https://github.com/jremmons/pyfakewebcam) (Python interface for v4l2loopback, `pip install pyfakewebcam`). You can move the script to the root level in that repository.
 
 # Directions
-Before running the plugin, the virtual web camera device needs to be created. 
+Before running the plugin, the virtual web camera device needs to be created.
 ```
 sudo modprobe v4l2loopback devices=1
 ```
@@ -25,14 +53,3 @@ Once the plugin is launched, a simple OpenCV-based UI will show two buttons:
   3. Supplied target video background (samples included in this repo)
   4. Supplied target image background
 At any point, press Q to exit.
-
-# Guidelines
-For best results:
-1. Avoid blocking bright light, especially during background capture.
-2. Avoid changing light conditions. For prolonged use, it may be helpful to re-take the background as light conditions drift.
-
-# Community Contributions
-1. [@kevinlester](https://github.com/kevinlester/BGMv2-webcam-plugin-linux) added many realtime settings to the UI controls
-2. [@KostiaChorny](https://github.com/KostiaChorny/BGMv2-webcam-plugin-linux) added Windows OBS virtual camera support (not merged but please visit their fork)
-
-Thanks to [CK FreeVideoTemplates](https://www.youtube.com/watch?v=DHRUNWdf3ms) on YouTube for the seasonal video target background.
